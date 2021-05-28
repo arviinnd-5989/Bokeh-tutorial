@@ -1,0 +1,43 @@
+
+<html>
+    <body>
+    <head>
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-1.3.4.min.js"></script>
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.3.4.min.js"></script>
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-tables-1.3.4.min.js"></script>
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-gl-1.3.4.min.js"></script>
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-api-1.3.4.min.js"></script>
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-api-1.3.4.min.js"></script>
+    </head>
+    
+    <script>
+        // create some data and a ColumnDataSource
+        var x = Bokeh.LinAlg.linspace(-0.5, 20.5, 10);
+        var y = x.map(function (v) { return v * 0.5 + 3.0; });
+        var source = new Bokeh.ColumnDataSource({ data: { x: x, y: y } });
+        // make the plot
+        var plot = new Bokeh.Plot({
+           title: "BokehJS Plot",
+           plot_width: 400,
+           plot_height: 400
+        });
+        
+        // add axes to the plot
+        var xaxis = new Bokeh.LinearAxis({ axis_line_color: null });
+        var yaxis = new Bokeh.LinearAxis({ axis_line_color: null });
+        plot.add_layout(xaxis, "below");
+        plot.add_layout(yaxis, "left");
+        
+        // add a Line glyph
+        var line = new Bokeh.Line({
+           x: { field: "x" },
+           y: { field: "y" },
+           line_color: "#666699",
+           line_width: 2
+        });
+        plot.add_glyph(line, source);
+        
+        Bokeh.Plotting.show(plot);
+    </script>
+    </body>
+    </html>
